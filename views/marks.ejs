@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .report-card {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .photo {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background-color: #e4e4e4;
+            background-image: url('https://mis.pcampus.edu.np/showfile.php?fileId=453b1b23-67a6-43e2-8d19-05e2b48109e8');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .student-details {
+            flex-grow: 1;
+        }
+
+        .student-details h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .student-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .subject-marks {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .subject-marks th, .subject-marks td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+        }
+
+        .subject-marks th {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .subject-marks tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .subject-marks tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="report-card">
+        <div class="header">
+            <div class="photo"></div>
+            <div class="student-details">
+                <h2>Sushant Chalise</h2>
+                <p><strong>Campus Roll Number:</strong> 080MSDSA023</p>
+                <p><strong>Level:</strong> M.Sc </p>
+                <p><strong>Program:</strong> M.Sc in Data Science</p>
+                <p><strong>Semester/Part:</strong> I/I</p>
+            </div>
+        </div>
+        <table class="subject-marks">
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Internal</th>
+                    <th>External</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Big Data</td>
+                    <td>33</td>
+                    <td>55</td>
+                    <td>88</td>
+                </tr>
+                <tr>
+                    <td>Fundamentals of Data Science</td>
+                    <td>23</td>
+                    <td>51</td>
+                    <td>74</td>
+                </tr>
+                <tr>
+                    <td>Distributed Edge Computing</td>
+                    <td>40</td>
+                    <td>55</td>
+                    <td>95</td>
+                </tr>
+                <tr>
+                    <td>Machine Learning</td>
+                    <td>36</td>
+                    <td>52</td>
+                    <td>88</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="footer">
+            <p>End of Report Card</p>
+        </div>
+    </div>
+</body>
+</html>

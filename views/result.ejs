@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .report-card {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .photo {
+            flex-shrink: 0;
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background-color: #e4e4e4;
+            /* background-image: url('<%=pic%>'); */
+            background-size: cover;
+            background-position: center;
+        }
+
+        .student-details {
+            flex-grow: 1;
+        }
+
+        .student-details h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .student-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .subject-marks {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .subject-marks th, .subject-marks td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            color: #444;
+        }
+
+        .subject-marks th {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .subject-marks tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .subject-marks tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="report-card">
+        <div class="header">
+            <div class="photo" >
+                <img src="<%= pic %>" style="border-radius: 50%; height: 150px; width: 150px;" >
+            </div>
+            <% if (info) { %>
+                <div class="student-details">
+                    <h2><%= info.firstname %> <%= info.middlename %> <%= info.lastname %></h2>
+                    <p><strong>Program Type: </strong><%= info.programtype %></p>
+                    <p><strong>Unique Roll Number: </strong><%= info.uniquerollno %></span></p>
+                    <p><strong>Date of Birth: </strong><%= info.dob %></p>
+                    <p><strong>Gender: </strong><%= info.gender %></p>
+                    <p><strong>Email Address: </strong><%= info.emailid %></p>
+                    <p><strong>Contact Number: </strong><%= info.mobileno %></p>
+                    <p><strong>District: </strong><%= info.district %></p>
+                    <p><strong>Faculty Name: </strong><%= info.facultyname %></p>
+                </div>
+    
+                
+            <% } else { %>
+                <p>No student found with the provided roll number.</p>
+            <% } %>
+
+        </div>
+        <table class="subject-marks">
+            <p><strong><%= marks[0].type %></strong></p>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Full Marks</th>
+                    <th>Pass Marks</th>
+                    <th>Obtained</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% 
+                var displayedSubjects = new Set();
+                for(var i = 0; i < marks.length; i++) { 
+                    if (!displayedSubjects.has(marks[i].subject)) {
+                        displayedSubjects.add(marks[i].subject);
+            %>
+                        <tr>
+                            <td><%= marks[i].subject %></td>
+                            <td><%= marks[i].fullmarks %></td>
+                            <td><%= marks[i].passmarks %></td>
+                            <td><%= marks[i].obtainedmarks %></td>
+                        </tr>
+            <% 
+                    }
+                } 
+            %>
+            
+            </tbody>
+        </table>
+        <div class="footer">
+            <p><strong>Exam Date: </strong><%= marks[0].examdate %></p>
+            <p>End of Report Card</p>
+            <a href="/" class="back-link">Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>
