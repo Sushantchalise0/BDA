@@ -14,22 +14,6 @@ app.use(express.static('views'));
 // Set view engine to EJS (to handle embedded JavaScript in HTML)
 app.set('view engine', 'ejs');
 
-// MySQL connection using environment variables
-const connection = mysql.createConnection({
-    host: 'ioe-pulchowk.cl2aoqwkgg4s.us-east-1.rds.amazonaws.com',
-    user: 'admin',
-    password: 'admin123',
-    database: 'pulchowk'
-});
-
-// Connect to the database
-connection.connect((err) => {
-    if (err) {
-        console.error('Error connecting to the database:', err);
-        return;
-    }
-    console.log('Connected to the MySQL database.');
-});
 
 // Serve the form page
 app.get('/', (req, res) => {
@@ -49,6 +33,29 @@ app.post('/result', (req, res) => {
     const pic = 'https://mis.pcampus.edu.np/showfile.php?fileId='+randomValue;
 
     const rollNumber = req.body.rollNumber;
+    campus = rollNumber.substring(0,3);
+    if (campus == 'IOM'){
+        dbName = 'tu_iom';
+    } else{
+        dbName = 'pulchowk';
+    }
+
+    // MySQL connection using environment variables
+const connection = mysql.createConnection({
+    host: 'ioe-pulchowk.cl2aoqwkgg4s.us-east-1.rds.amazonaws.com',
+    user: 'admin',
+    password: 'admin123',
+    database: dbName
+});
+
+// Connect to the database
+connection.connect((err) => {
+    if (err) {
+        console.error('Error connecting to the database:', err);
+        return;
+    }
+    console.log('Connected to database.',dbName);
+});
 
     connection.query('SELECT * FROM students_batch_80_facultycode_msdsa WHERE uniquerollno = ?', [rollNumber], (err, results1) => {
         if (err) {
@@ -108,7 +115,7 @@ app.post('/result', (req, res) => {
 app.post('/report', (req, res) => {
     const rollNumber = req.body.rollNumber;
 
-    connection.query('SELECT * FROM marks_batch_80_facultycode_msdsa ',(err, results) => {
+    connection.query('SELECT * FROM students_batch_80_facultycode_msdsa ',(err, results) => {
         if (err) {
             return res.status(500).send('Error querying the database, No Roll Number');
         }
